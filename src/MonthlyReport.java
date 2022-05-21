@@ -1,18 +1,17 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MonthlyReport {
 
-
 MonthData monthToData;
 
-    public MonthlyReport(String path){
+    public MonthlyReport(){
+
         monthToData = new MonthData();
 
-        String fileContents = readFileContentsOrNull(path);
+    }
+    void convertFile(String path){
+
+        String fileContents = WorkWithReports.readFileContentsOrNull(path);
         String[] lines = fileContents.split(System.lineSeparator());
         String[] lineContents;
 
@@ -74,24 +73,4 @@ MonthData monthToData;
         System.out.println("Самый прибыльный товар: "+maxProductName+" - "+maxProductPrice);
     }
 
-    private static String readFileContentsOrNull(String path)
-    {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("Невозможно прочитать файл с месячным отчётом. Возможно, файл не находится в нужной директории.");
-            return null;
-        }
-    }
-
-
-}
-class MonthData{
-
-    HashMap <String, ArrayList<Integer>> expenses;
-    HashMap <String,ArrayList<Integer>> income;
-    MonthData(){
-        expenses = new HashMap<>();
-        income = new HashMap<>();
-    }
 }
