@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -14,20 +15,16 @@ public class Main {
             int command = scanner.nextInt();
             if(command == 1){
                 for(int i = 1; i<=3;i++){
-                    if(i > 9){
+
                         reports[i-1] = new MonthlyReport();
-                        reports[i-1].convertFile("resources\\m.2021"+i+".csv");
-                    }
-                    else{
-                        reports[i-1] = new MonthlyReport();
-                        reports[i-1].convertFile("resources\\m.20210"+i+".csv");
-                    }
+                        reports[i-1].convertFile( "resources"+ File.separator +"m.20210"+i+".csv");
+
                 }
                 isMonthReport = true;
             }
             else if(command == 2){
                 year = new YearlyReport();
-                year.convertFile("resources\\y.2021.csv");
+                year.convertFile("resources"+ File.separator +"y.2021.csv");
                 isYearReport = true;
             }
             else if(command == 3){
